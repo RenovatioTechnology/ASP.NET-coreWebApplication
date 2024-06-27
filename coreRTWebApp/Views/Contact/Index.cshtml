@@ -1,0 +1,53 @@
+﻿@model coreRTWebApp.Models.ContactMessage
+
+@{
+    ViewData["Title"] = "Contact Us";
+}
+<div class="content-two">
+    <div class="text">
+        <h1>Renovatio Technology</h1>
+        <h2>VR Developer</h2>
+        <p>
+            Drop us a line!
+        </p>
+    </div>
+</div>
+<div class="contact-form">
+    
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subject)
+            @Html.TextBoxFor(model => model.Subject, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Message)
+            @Html.TextAreaFor(model => model.Message, new { @class = "form-control", rows = 5 })
+            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-custom">Submit</button>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
